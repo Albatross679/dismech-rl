@@ -36,3 +36,6 @@ load_func = lambda *args, **kwargs: (DisMechFollowEnv() if sim_framework ==
 alf.config("create_environment",
            env_name=f"{sim_framework}_soft_manipulator_follow_target",
            env_load_fn=load_func)
+
+# Enable find_unused_parameters for DDP to handle parameters that don't always receive gradients
+alf.config('make_ddp_performer', find_unused_parameters=True)
